@@ -1,0 +1,15 @@
+MULTICHAIN MIDTERM - VEHICLE TRUST
+
+1. Read Midterm_Report.pdf. The same report is editable in Word.
+2. Open PowerShell in this extracted folder.
+3. Run:
+   python .\trust_lab.py setup --bin-dir "$env:USERPROFILE\Downloads\multichain-windows-2.3.32"
+   python .\trust_lab.py demo
+4. To enter your own readings, create another fresh setup, then run:
+   python .\trust_lab.py interactive
+5. Read README.md for exact CLI verification commands, restart and recovery.
+
+Reference evidence is from real Linux MultiChain 2.3.3 nodes, with synthetic vehicle readings.
+Your Windows addresses, chain name and transaction IDs will differ.
+Only setup, demo and interactive create transactions; confirmed actions are not rolled back.
+No additional Python packages are needed for the lab.
