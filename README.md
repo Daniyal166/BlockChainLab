@@ -120,13 +120,3 @@ python .\trust_lab.py evidence
 One local application writer is allowed. A writer.lock prevents concurrent local evaluations. If the process crashed, first ensure no trust_lab process is running, then delete only that run's writer.lock and run `recover`. Do not delete `pending.json`. A pending signed decision is rebroadcast as the same transaction, not rebuilt with another payout. Never run a second copy with a separate config pointing to the same chain. This is an application-level single-writer assumption, not a distributed lock.
 
 A crash before the decision was prepared can leave valid telemetry and reports without a decision; they remain as evidence. The current simple CLI does not resume such partially collected sessions. Use a new session/interactive run after inspecting the chain. Setup failures can leave partial chains; preserve logs, stop that run with `--run-dir`, and create a new one. No rollback of confirmed transactions is claimed.
-
-## Limits to explain in the viva
-
-- Speed/position rules and voting are Python logic, not Solidity or consensus-enforced business rules. A malicious authorized evaluator can publish a bad decision; permissions do not prove a decision is correct.
-- Two nodes run on one host. Vehicles are addresses in the authority wallet, not five physical nodes. The operator holds their keys, so this demonstrates roles, not independently controlled witnesses.
-- Registry addresses provide pseudonyms, not anonymity. All permitted readers see telemetry, decisions and asset amounts.
-- The majority vote is an application rule, separate from permissioned block production. Multiple colluding reporters and fabricated sensor data remain a risk.
-- Minimum four reporters and >50% positive votes are preserved. One penalty per suspect/session avoids repeated deductions for the same event. Rewards are paid automatically with the decision; a separate claim transaction is omitted.
-- Soft blocking is checked by Python for reporting. Hard revocation additionally removes `reports.write` and `telemetry.write` via admin transactions; it does not remove asset ownership or disable receive permission.
-- No actual roadside hardware, wireless simulation, certificate infrastructure, key rotation, AI detection, cross-shard migration or throughput benchmark is included.
